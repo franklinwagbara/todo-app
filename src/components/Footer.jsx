@@ -1,10 +1,10 @@
 import React from "react";
 import "./styles/Footer.scss";
 
-const Footer = ({ items = 0 }) => {
+const Footer = ({ itemsCount = 0 }) => {
   return (
     <span className="footer-text">
-      {items > 1 ? `${items} items left` : `${items} item left`}{" "}
+      {itemsCount > 1 ? `${itemsCount} items left` : `${itemsCount} item left`}{" "}
     </span>
   );
 };

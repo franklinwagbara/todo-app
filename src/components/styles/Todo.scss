@@ -15,10 +15,19 @@
     font-family: cursive;
   }
 
+  .edit {
+    height: 35px;
+    max-width: 70%;
+  }
+
   .controls {
     margin-right: 30px;
     width: 50px;
     display: flex;
     justify-content: space-between;
+
+    svg:hover {
+      cursor: pointer;
+    }
   }
 }

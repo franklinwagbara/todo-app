@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./styles/TodoList.scss";
 import Todo from "./Todo";
 import Footer from "./Footer";
 
 const TodoList = ({ list }) => {
-  console.log("re-rendering todo");
   return (
     <div className="todo-list">
       {list.map((item) => (
-        <Todo todo={item} />
+        <Todo key={item.name} todo={item.name} completed={item.completed} />
       ))}
-      <Footer />
+      <Footer itemsCount={list.length} />
     </div>
   );
 };

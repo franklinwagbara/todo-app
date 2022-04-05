@@ -1,13 +1,32 @@
 import React, { useState } from "react";
 
 const useTodo = () => {
-  const [todos, setTodos] = useState(new Set());
+  const [todos, setTodos] = useState([]);
 
-  const addTodo = (todo = "") => {
-    setTodos((prev) => prev.add(todo));
+  const updateTodo = (prevTodo, todo) => {
+    const index = todos.findIndex((todo) => todo.name === prevTodo.name);
+
+    const newTodos = [...todos];
+    newTodos[index] = todo;
+
+    setTodos((prev) => [...newTodos]);
   };
 
-  return [todos, addTodo];
+  const deleteTodo = (value) => {
+    const newTodos = todos.filter((todo) => todo.name !== value);
+    setTodos((prev) => [...newTodos]);
+    return;
+  };
+
+  const addTodo = (todo = "") => {
+    if (
+      todos.find((_todo) => _todo.name === todo || todo === "" || todo === " ")
+    )
+      return;
+    setTodos((prev) => [...prev, { name: todo, completed: false }]);
+  };
+
+  return [todos, addTodo, deleteTodo, updateTodo];
 };
 
 export default useTodo;
