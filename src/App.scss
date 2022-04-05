@@ -1,0 +1,22 @@
+.container {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 10%;
+
+  input {
+    display: block;
+    margin: 0 auto;
+    min-width: 500px;
+    width: 600px;
+    height: 56px;
+    border-radius: 10px;
+    border-style: none;
+    padding: 2px 20px;
+    outline-color: #ee38ff83;
+    box-shadow: 0px 0px 8px #ee38ff;
+    font-size: 1.4rem;
+    color: #ee38ff83;
+    font-weight: bolder;
+  }
+}
