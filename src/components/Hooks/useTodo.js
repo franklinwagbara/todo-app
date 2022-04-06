@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const useTodo = () => {
   const [todos, setTodos] = useState([]);
@@ -26,7 +26,14 @@ const useTodo = () => {
     setTodos((prev) => [...prev, { name: todo, completed: false }]);
   };
 
-  return [todos, addTodo, deleteTodo, updateTodo];
+  const filterTodo = (filter = "ALL") => {
+    if (filter === "ALL") return todos;
+    else if (filter === "COMPLETED")
+      return todos.filter((todo) => todo.completed === true);
+    else return todos.filter((todo) => todo.completed === false);
+  };
+
+  return [addTodo, deleteTodo, updateTodo, filterTodo];
 };
 
 export default useTodo;

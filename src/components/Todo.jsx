@@ -2,14 +2,12 @@ import React, { useContext, useState } from "react";
 import "./styles/Todo.scss";
 import Checker from "./Checker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faTrash, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { DeleteContext, ToggleEditContext, UpdateTodoContext } from "../App";
-import { IsEditContext } from "./../App";
+import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { DeleteContext, UpdateTodoContext } from "../App";
 
 const Todo = (props) => {
   const deleteTodo = useContext(DeleteContext);
-  const toggleEdit = useContext(IsEditContext);
-  const setToggleEdit = useContext(ToggleEditContext);
+  const [toggleEdit, setToggleEdit] = useState(false);
   const updateTodo = useContext(UpdateTodoContext);
   const [val, setVal] = useState(props.todo);
   const [completed, setCompleted] = useState(props.completed);
@@ -17,14 +15,18 @@ const Todo = (props) => {
 
   const onEnterKey = ({ code }) => {
     if (code === "Enter") {
-      //addTodo(val);
       updateTodo(prevTodo, { name: val, completed: completed });
       setToggleEdit((prev) => !prev);
     }
   };
 
   return (
-    <div className="todo">
+    <div
+      style={
+        props.completed ? { backgroundColor: "rgba(240, 56, 255, 0.23)" } : {}
+      }
+      className="todo"
+    >
       <Checker
         tick={props.completed}
         onTick={() => {
@@ -41,7 +43,15 @@ const Todo = (props) => {
           onKeyDown={(e) => onEnterKey(e)}
         />
       ) : (
-        <span>{props.todo}</span>
+        <span
+          style={
+            props.completed
+              ? { textDecoration: "line-through", fontStyle: "italic" }
+              : {}
+          }
+        >
+          {props.todo}
+        </span>
       )}
 
       <div className="controls">
